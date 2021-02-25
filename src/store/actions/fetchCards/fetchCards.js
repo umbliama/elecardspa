@@ -1,28 +1,27 @@
 import axios from "axios";
 
-export function fetchCards(data) {
-  return {
-    type: "FETCH_CARDS",
-    payload: data,
-  };
-}
-export function setIsLoading() {
-  return {
-    type: "SET_IS_LOADING",
-    payload: true,
-  };
-}
 export function setCards() {
-  return (dispatch) => {
-    console.log("test");
-    return axios
+  return  dispatch  => {
+    dispatch(fetchCards())
+    axios
       .get(`http://contest.elecard.ru/frontend_data/catalog.json`)
-      .then((response) => {
-        dispatch(fetchCards(response.data));
-        setIsLoading();
+      .then( response => {
+        dispatch(fetchCardsIsFinished(response.data));
       })
       .catch((error) => {
         throw new Error(error);
       });
   };
 }
+export function fetchCards() {
+  return {
+    type: "FETCH_CARDS_IS_LOADING",
+  };
+}
+export function fetchCardsIsFinished(data) {
+  return {
+    type:"FETCH_CARDS_IS_FINISHED",
+    payload: data,
+  }
+}
+

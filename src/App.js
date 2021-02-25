@@ -16,12 +16,11 @@ class App extends Component {
 
   componentDidMount() {
     this.props.setCards()
-    console.log(this.props);
   }
 
   render() {
     const {items,isLoading} = this.props
-    if(isLoading)  {
+    if(isLoading || items === undefined)  {
       return (
         <div>
           Loading...
@@ -31,7 +30,7 @@ class App extends Component {
       return (
       
         <div>
-          <CardList cards={items} />
+          <CardList items={items} />
         </div>
       );
     }
@@ -42,7 +41,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.cards.cards,
+    items: state.cards.items,
     isLoading:state.cards.isLoading
   }
 }
