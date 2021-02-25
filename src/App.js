@@ -1,7 +1,9 @@
 import "./App.css";
-import axios from "axios";
 import { Component } from "react";
 import CardList from './components/CardsList/CardsList'
+import {setCards} from './store/actions/fetchCards/fetchCards'
+import {connect} from 'react-redux'
+
 
 class App extends Component {
   constructor(props) {
@@ -13,22 +15,44 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(`http://contest.elecard.ru/frontend_data/catalog.json`)
-      .then((res) => {
-        const data = res.data;
-        this.setState({ data });
-      });
+    this.props.setCards()
+    console.log(this.props);
   }
 
   render() {
-    const {data} = this.state
-    return (
-      <div>
-        <CardList cards={data} />
-      </div>
-    );
+    const {items,isLoading} = this.props
+    if(isLoading)  {
+      return (
+        <div>
+          Loading...
+        </div>
+      )
+    }else {
+      return (
+      
+        <div>
+          <CardList cards={items} />
+        </div>
+      );
+    }
+
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.cards.cards,
+    isLoading:state.cards.isLoading
+  }
+}
+
+const  mapDispatchToProps = ( dispatch ) => {
+  return {
+    setCards: () => {
+      dispatch(setCards())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
