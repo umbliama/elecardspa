@@ -1,17 +1,25 @@
-import Card from "../Card/Card";
+import {Container,CardColumns } from "react-bootstrap";
+import { connect } from "react-redux";
+import CardItem from "../Card/Card";
 
+const CardsList = ({items}) => {
 
-const CardsList = ({cards}) => {
-    const url ="http://contest.elecard.ru/frontend_data/";
     return (
         <div>
-            <ul>
-                {cards.splice(0,5).map(card => {
-                    return <Card image={`${url}${card.image}`}/>
-                })}
-            </ul>
+            <Container>
+                <CardColumns>
+                    {items.splice(0,15).map((item,index) => {
+                        return <CardItem  key={index} card={item}/>
+                    })}
+                </CardColumns>
+            </Container>
         </div>
     )
 }
-
-export default CardsList;
+const mapStateToProps = (state) => {
+    return {
+      items: state.cards.items,
+    }
+  }
+  
+export default connect(mapStateToProps)(CardsList);
