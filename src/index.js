@@ -7,10 +7,10 @@ import { Provider } from "react-redux";
 import { compose, applyMiddleware, createStore } from "redux";
 import rootReducer from "./store/reducers/index";
 import thunk from "redux-thunk";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-const store = createStore(rootReducer, enhancer);
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
