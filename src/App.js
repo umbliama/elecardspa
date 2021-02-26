@@ -3,7 +3,7 @@ import { Component } from "react";
 import CardList from './components/CardsList/CardsList'
 import {setCards} from './store/actions/fetchCards/fetchCards'
 import {connect} from 'react-redux'
-
+import Header from './components/Header/Header'
 
 class App extends Component {
   constructor(props) {
@@ -16,11 +16,12 @@ class App extends Component {
 
   componentDidMount() {
     this.props.setCards()
+    console.log(this.props)
   }
 
   render() {
-    const {items,isLoading} = this.props
-    if(isLoading || items === undefined)  {
+    const {isLoading} = this.props
+    if(isLoading)  {
       return (
         <div>
           Loading...
@@ -30,7 +31,9 @@ class App extends Component {
       return (
       
         <div>
-          <CardList items={items} />
+          <Header />
+          <CardList/>
+          
         </div>
       );
     }
@@ -41,16 +44,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.cards.items,
     isLoading:state.cards.isLoading
   }
 }
 
 const  mapDispatchToProps = ( dispatch ) => {
   return {
-    setCards: () => {
-      dispatch(setCards())
-    }
+    setCards: () => dispatch(setCards())
   }
 }
 
