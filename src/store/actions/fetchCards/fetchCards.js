@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export function setCards() {
-  return  dispatch  => {
+  return async dispatch  => {
     dispatch(fetchCards())
-    axios
+    await axios
       .get(`http://contest.elecard.ru/frontend_data/catalog.json`)
       .then( response => {
         dispatch(fetchCardsIsFinished(response.data));
