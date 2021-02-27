@@ -4,14 +4,15 @@ import CardItem from "../Card/Card";
 import orderBy from 'lodash/orderBy'
 import { setFilter } from "../../store/actions/filterCards";
 
-const CardsList = ({items}) => {
+const CardsList = ({items,filterBy}) => {
     const dispatch = useDispatch(); 
     return (
         <div>
             <Container style={{margin:"100px 0 0 0"}}>
             <InputGroup >
                 <InputGroup.Prepend>
-                <InputGroup.Radio onChange={() => dispatch(setFilter("name"))}  aria-label="Radio button for following text input" />
+                <InputGroup.Radio checked={filterBy === "filesize"} onChange={() => dispatch(setFilter("filesize"))}  aria-label="Radio button for following text input" />
+                <InputGroup.Radio checked={filterBy === "category"} onChange={() => dispatch(setFilter("category"))}  aria-label="Radio button for following text input" />
                 </InputGroup.Prepend>
                 <FormLabel>Sort by filesize</FormLabel>
             </InputGroup>
@@ -27,6 +28,7 @@ const CardsList = ({items}) => {
 const mapStateToProps = (state) => {
     return {
       items: state.cards.items,
+      filterBy:state.filter.filterBy
     }
 }
 
