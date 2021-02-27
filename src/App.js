@@ -4,6 +4,7 @@ import CardList from './components/CardsList/CardsList'
 import {setCards} from './store/actions/fetchCards/fetchCards'
 import {connect} from 'react-redux'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class App extends Component {
         <div>
           <Header />
           <CardList/>
-          
+          <Footer />
         </div>
       );
     }
@@ -50,7 +51,7 @@ const mapStateToProps = (state) => {
 
 const  mapDispatchToProps = ( dispatch ) => {
   return {
-    setCards: () => dispatch(setCards())
+    setCards: () => dispatch(setCards()),
   }
 }
 
