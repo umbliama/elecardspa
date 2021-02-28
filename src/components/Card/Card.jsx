@@ -1,18 +1,20 @@
 import {Card} from 'react-bootstrap'
 
 const CardItem = ({card,keyId}) => {
-    function closeImg() {
-        document.querySelector('.card-container').style.display = "none";
-    }
+
     const url ="http://contest.elecard.ru/frontend_data/";
-    const {image,filesize} = card;
+    const {image,filesize,timestamp} = card;
     return (
             <Card >
-            <Card.Img  fluid variant="top" src={`${url}${image}`} />
+            <Card.Img  variant="top" src={`${url}${image}`} />
             <Card.Body>
             <Card.Title>Card title</Card.Title>
             <Card.Text>
                 {filesize}
+                
+            </Card.Text>
+            <Card.Text>
+            {new Date(timestamp).toISOString()}
             </Card.Text>
             </Card.Body>
             <Card.Footer>

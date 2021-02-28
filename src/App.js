@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.setCards()
-    console.log(this.props)
   }
 
   render() {
@@ -52,6 +52,7 @@ const mapStateToProps = (state) => {
 const  mapDispatchToProps = ( dispatch ) => {
   return {
     setCards: () => dispatch(setCards()),
+    
   }
 }
 

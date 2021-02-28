@@ -1,19 +1,34 @@
-import React, { Component } from 'react';
+import { useEffect } from "react";
+import { Pagination } from "react-bootstrap";
+import { connect,useDispatch } from 'react-redux'
+import {setTotalPages} from '../../store/actions/pagesCreator'
 
-class Pagination extends Component {
-    constructor(props) {
-        this.state = {
-            currentPage:1,
-            cardPerPage:5
-        }
-    }
-    render() { 
-        return (
-            <div>
-                
-            </div>
-        );
+const PaginationStyles= {
+    margin:"0 0 100px 0"
+}
+
+
+const BasicPagination = (items) => {
+
+
+    return (
+        <Pagination style={PaginationStyles}>
+            {items}
+        </Pagination>
+    )
+
+}
+
+const mapStateToProps = (state) => {
+    return {
+        items:state.cards.items
     }
 }
- 
-export default Pagination;
+
+
+
+
+
+
+export default connect(mapStateToProps, null)(BasicPagination)
+
