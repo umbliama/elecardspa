@@ -16,6 +16,11 @@ const pagesReducer = (state = initialState, action) => {
         ...state,
         totalCount: action.payload,
       };
+    case "incCurPage":
+      return {
+        ...state,
+        currentPage: state.currentPage += 1,
+      };
     default:
       return state;
   }
