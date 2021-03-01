@@ -10,3 +10,8 @@ export function setTotalPages(totalCount, perPage) {
     payload: Math.ceil(totalCount / perPage),
   };
 }
+export function incPage() {
+  return {
+    type:"incCurPage",
+  }
+}
