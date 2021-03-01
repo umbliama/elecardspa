@@ -4,10 +4,17 @@ const initialState = {
 
 const treeviewReducer = (state = initialState, action) => {
     switch (action.type) {
-      case "EXPAND_VIEW":
+      case "OPEN_VIEW":
         return {
           ...state,
-          isOpen :true
+          isOpen :true,
+          isLoading:true
+        };
+      case "CLOSE_VIEW":
+        return {
+          ...state,
+          isOpen :false,
+          isLoading:false
         };
       default:
         return state;
