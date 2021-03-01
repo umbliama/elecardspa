@@ -1,3 +1,4 @@
+
 const Tree = ({data}) => {
     const url ="http://contest.elecard.ru/frontend_data/";
     const uniqueCategories = data.map(item => item.category) 
@@ -14,6 +15,7 @@ const Tree = ({data}) => {
                             <ul>
                             {data.map((item,index) => {
                                 {if (item.category === mainCategory) return <li><img style={{width:"50px"}} src={`${url}${item.image}`} /></li>}
+
                             })}  
                         </ul>
                         </div>

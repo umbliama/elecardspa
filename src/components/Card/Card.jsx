@@ -4,8 +4,9 @@ const CardItem = ({card,keyId}) => {
 
     const url ="http://contest.elecard.ru/frontend_data/";
     const {image,filesize,timestamp} = card;
+    
     return (
-            <Card >
+            <Card style={{minWidth:"300px"}}>
             <Card.Img  variant="top" src={`${url}${image}`} />
             <Card.Body>
             <Card.Title>Card title</Card.Title>

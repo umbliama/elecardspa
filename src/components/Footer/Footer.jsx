@@ -4,7 +4,7 @@ import {Navbar,Nav} from 'react-bootstrap';
 const Footer = () => {
 
     return(
-        <Navbar fixed="bottom" bg="dark" variant="dark">
+        <Navbar style={{margin:"100px 0 0 0;"}} className="mt-10" fixed="bottom" bg="dark" variant="dark">
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="mr-auto">
             <Nav.Link href="#home">Home</Nav.Link>
