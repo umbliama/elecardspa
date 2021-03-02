@@ -1,24 +1,25 @@
 import { useEffect } from "react";
-import { connect,useDispatch } from 'react-redux'
-import {setTotalPages} from '../../store/actions/pagesCreator'
-const PaginationStyles= {
-    margin:"0 0 100px 0"
-}
+import { connect,useDispatch, useSelector } from 'react-redux'
+import {setTotalPages,setCurrentPage} from '../../store/actions/pagesCreator'
+import "./Pagination.scss"
+import ReactPaginate from 'react-paginate';
 
 
 const BasicPagination = (items) => {
-const pages = []
 const dispatch = useDispatch();
 const allItems = items.items.length;
+const perPage = useSelector(state => state.pages.perPage)
+const totalPages = Math.ceil(allItems/perPage)
 
-useEffect(()=>{
-    dispatch(setTotalPages(allItems,10))
-},[])
+
+
+const onPageChange = (e) => {
+  dispatch(setCurrentPage(e.selected + 1))
+}
+
     return (
-        <div style={{margin:"0 0 100px 0"}} className="pages">
-            {pages.map((page,index) => {
-                return <span className="page" key={index}>{page}</span>
-            })}
+        <div className="pages">
+        <ReactPaginate breakClassName={'pagination__break'} pageClassName={'pagination__item'} containerClassName={'pagination'} pageCount={totalPages} pageRangeDisplayed={10} onPageChange={(e) => onPageChange(e)}/>
         </div>
     )
 
@@ -26,7 +27,11 @@ useEffect(()=>{
 
 const mapStateToProps = (state) => {
     return {
-        items:state.cards.items
+        items:state.cards.items,
+        perPage:state.pages,
+        totalCount:state.pages.totalCount,
+        currentPage:state.pages.currentPage,
+
     }
 }
 
