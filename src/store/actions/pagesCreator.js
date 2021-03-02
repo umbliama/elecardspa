@@ -4,14 +4,19 @@ export function setCurrentPage(curPage) {
     payload: curPage,
   };
 }
-export function setTotalPages(totalCount, perPage) {
+export function setTotalPages(totalCount) {
   return {
     type: "SET_TOTAL_PAGES",
-    payload: Math.ceil(totalCount / perPage),
+    payload: totalCount,
   };
 }
 export function incPage() {
   return {
-    type:"incCurPage",
-  }
+    type: "incCurPage",
+  };
+}
+export function decPage() {
+  return {
+    type: "decCurPage",
+  };
 }
