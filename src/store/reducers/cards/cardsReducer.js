@@ -1,6 +1,7 @@
 const initialState = {
   isLoading: false,
   items: [],
+  closedCards: [],
 };
 
 const cardReducer = (state = initialState, action) => {
@@ -8,15 +9,24 @@ const cardReducer = (state = initialState, action) => {
     case "FETCH_CARDS_IS_LOADING":
       return {
         ...state,
-        isLoading:true
+        isLoading: true,
       };
     case "FETCH_CARDS_IS_FINISHED":
-      return{
+      return {
         ...state,
         items: action.payload,
-        isLoading:false
-      }
-
+        isLoading: false,
+      };
+    case "CLOSE_CARD":
+      return {
+        ...state,
+        closedCards: [...state.closedCards, action.payload],
+      };
+    case "CLEAR_CLOSED_CARDS":
+      return {
+        ...state,
+        closedCards: [],
+      };
     default:
       return state;
   }

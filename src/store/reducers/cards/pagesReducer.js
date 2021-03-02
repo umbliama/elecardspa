@@ -1,6 +1,6 @@
 const initialState = {
   totalCount: 0,
-  perPage: 10,
+  perPage: 12,
   currentPage: 1,
 };
 
@@ -19,7 +19,12 @@ const pagesReducer = (state = initialState, action) => {
     case "incCurPage":
       return {
         ...state,
-        currentPage: state.currentPage += 1,
+        currentPage: (state.currentPage += 1),
+      };
+    case "decCurPage":
+      return {
+        ...state,
+        currentPage: (state.currentPage -= 1),
       };
     default:
       return state;
