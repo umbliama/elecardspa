@@ -7,11 +7,30 @@ import { Provider } from "react-redux";
 import { compose, applyMiddleware, createStore } from "redux";
 import rootReducer from "./store/reducers/index";
 import thunk from "redux-thunk";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+function saveToLocalStorage(state) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
+const persistedState = localStorage.getItem("state")
+  ? JSON.parse(localStorage.getItem("state"))
+  : {};
+
+const store = createStore(
+  rootReducer,
+  persistedState,
+  composeEnhancers(applyMiddleware(thunk))
+);
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
