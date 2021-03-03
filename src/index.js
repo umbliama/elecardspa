@@ -18,11 +18,20 @@ function saveToLocalStorage(state) {
   }
 }
 
+function loadToLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if(serializedState === null) return undefined
+    return JSON.parse(serializedState)
+  } catch (e) {
+    console.error(e);
+    return undefined
+  }
+}
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const persistedState = localStorage.getItem("state")
-  ? JSON.parse(localStorage.getItem("state"))
-  : {};
+const persistedState = loadToLocalStorage()
 
 const store = createStore(
   rootReducer,
@@ -31,6 +40,7 @@ const store = createStore(
 );
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
