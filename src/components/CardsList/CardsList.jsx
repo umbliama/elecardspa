@@ -4,26 +4,28 @@ import CardItem from "../Card/Card";
 import orderBy from 'lodash/orderBy'
 import {setTotalPages } from '../../store/actions/pagesCreator'
 import Tree from "../Tree/Tree";
+import Pagination from '../Pagination/Pagination'
 
 
 const CardsList = ({items,filterBy,isOpen,perPage,currentPage}) => {
     const indexOfLastItem = currentPage * perPage;
     const indexOfFirstItem = indexOfLastItem - perPage
     const currentItems = items.slice(indexOfFirstItem,indexOfLastItem)
-    if(isOpen) {
+     if(isOpen) {
         return (
             <Container>
-                <Tree style={{margin:"0 0 300px 0"}} data={items} />
+                <Tree className="tree"  data={items} />
             </Container>
         )
     }else {
         return (
             <Container >
-                <CardDeck style={{margin:"200px 0 50px 0"}}>
+                <CardDeck className="card-deck">
                     {sortBy(currentItems,filterBy).map((item,index) => {
                         return <CardItem keyId={index}  key={index} card={item}/>
                     })}  
                 </CardDeck>
+                <Pagination />
             </Container>
 
         )
@@ -36,7 +38,7 @@ const mapStateToProps = (state) => {
       isOpen:state.treeview.isOpen,
       perPage:state.pages.perPage,
       currentPage:state.pages.currentPage,
-}
+    }
 }
 
 //TODO BINDACTIONS

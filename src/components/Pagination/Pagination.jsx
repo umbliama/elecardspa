@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { connect,useDispatch, useSelector } from 'react-redux'
-import {setTotalPages,setCurrentPage} from '../../store/actions/pagesCreator'
+import {setCurrentPage} from '../../store/actions/pagesCreator'
 import "./Pagination.scss"
 import ReactPaginate from 'react-paginate';
 
@@ -19,7 +18,7 @@ const onPageChange = (e) => {
 
     return (
         <div className="pages">
-        <ReactPaginate breakClassName={'pagination__break'} pageClassName={'pagination__item'} containerClassName={'pagination'} pageCount={totalPages} pageRangeDisplayed={10} onPageChange={(e) => onPageChange(e)}/>
+        <ReactPaginate breakClassName={'pagination__break'} pageClassName={'pagination__item'} containerClassName={'pagination'} pageCount={totalPages} pageRangeDisplayed={5} onPageChange={(e) => onPageChange(e)}/>
         </div>
     )
 

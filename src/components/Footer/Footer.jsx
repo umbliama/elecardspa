@@ -1,15 +1,13 @@
-import {Navbar,Nav} from 'react-bootstrap';
+import {Navbar,Nav,NavbarBrand} from 'react-bootstrap';
 
 
 const Footer = () => {
 
     return(
-        <Navbar style={{margin:"100px 0 0 0;"}} className="mt-10" fixed="bottom" bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar  className="footer-navbar mt-10" fixed="bottom" bg="dark" variant="dark">
             <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <NavbarBrand>Cards app 2021</NavbarBrand>
+
             </Nav>
       </Navbar>
     )

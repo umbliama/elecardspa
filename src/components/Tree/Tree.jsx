@@ -1,30 +1,35 @@
 import "./Tree.scss";
+import TreeComp from 'react-animated-tree'
+import {urlToFetch} from '../../utils/index'
+
+
 const Tree = ({data}) => {
-    const url ="http://contest.elecard.ru/frontend_data/";
     const uniqueCategories = data.map(item => item.category) 
     const mainCategories = uniqueCategories.filter((item,index) => uniqueCategories.indexOf(item) === index)
-
+    const toggle = (e)  => {
+        e.target.classList.toggle("active");
+    }
+    console.log(mainCategories)
     return (
-        <ul className="tree-main__list"> 
-            <li className="tree-main__item"><span  class="tree-main__caret">Root</span></li>
-            <ul className="tree-main__list--nested" >
-                {console.log(mainCategories)}
+        <div className="tree-main">
+            <TreeComp  content="root">
                 {mainCategories.map((mainCategory,index) => {
-                    return (
-                        <div>
-                            <li key={index}><span className="tree-main__caret">{mainCategory}</span></li>
-                            <ul className="tree-main__list--nested">
-                            {data.map((item,index) => {
-                                {if (item.category === mainCategory) return <li key={index}><img alt="" style={{width:"50px"}} src={`${url}${item.image}`} /></li>}
+                        return (
+                            <TreeComp key={index} content={mainCategory}>
+                            {data.filter(item => item.category === mainCategory).map((item,index) => {
+                                return <TreeComp key={index} content={item.image} >
+                                    <img key={index} alt={item.image} onClick={(e) => toggle(e)} className={`tree-main__img--thumb`} src={`${urlToFetch}${item.image}`} />
+
+                                </TreeComp>
+
 
                             })}  
-                        </ul>
-                        </div>
-                    )
+                            </TreeComp>
+                        )
                 })}
-                
-            </ul>
-        </ul>
+            </TreeComp>
+
+        </div>
     )
 }
 
