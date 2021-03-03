@@ -1,27 +1,10 @@
 .tree-main {
-  &__caret {
-    cursor: pointer;
-    user-select: none;
-    &::before {
-      content: "\25B6";
-      color: black;
-      display: inline-block;
-      margin-right: 6px;
-    }
-  }
-  &__caret-down {
-    &::before {
-      transform: rotate(90deg);
-    }
-  }
-  &__list {
-    margin: 150px 0 0 0;
-    list-style-type: none;
-    padding: 0;
-    &--nested {
-      display: none;
+  margin: 150px 0 0 0;
+  &__img {
+    &--thumb {
+      width: 100px;
       &.active {
-        display: block;
+        width: 100%;
       }
     }
   }
