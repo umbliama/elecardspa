@@ -1,12 +1,11 @@
-import "./App.css";
+import "./App.scss";
 import { Component } from "react";
 import CardList from './components/CardsList/CardsList'
-import {setCards} from './store/actions/fetchCards/fetchCards'
+import {setCards} from './store/actions/fetchCards'
 import {connect} from 'react-redux'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import {Spinner,Container } from "react-bootstrap";
-import Pagination from './components/Pagination/Pagination'
 
 
 class App extends Component {
@@ -38,10 +37,10 @@ class App extends Component {
       
         <div>
           <Header />
-          <Container >
+          <Container className="main-container">
             <CardList/>
-            <Pagination />
           </Container>
+          <Footer />
         </div>
       );
     }
