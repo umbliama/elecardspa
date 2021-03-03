@@ -1,0 +1,1 @@
+export const urlToFetch = "http://contest.elecard.ru/frontend_data/";
