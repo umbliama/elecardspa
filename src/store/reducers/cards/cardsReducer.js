@@ -2,6 +2,7 @@ const initialState = {
   isLoading: false,
   items: [],
   closedCards: [],
+  closedCardsPage:0
 };
 
 const cardReducer = (state = initialState, action) => {
@@ -20,7 +21,7 @@ const cardReducer = (state = initialState, action) => {
     case "CLOSE_CARD":
       return {
         ...state,
-        closedCards: [...state.closedCards, action.payload],
+        closedCards:[...state.closedCards,action.payload],
       };
     case "CLEAR_CLOSED_CARDS":
       return {

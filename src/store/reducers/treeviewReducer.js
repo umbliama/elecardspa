@@ -1,5 +1,6 @@
 const initialState = {
   isOpen: false,
+  isLoading:false,
 };
 
 const treeviewReducer = (state = initialState, action) => {
@@ -7,14 +8,12 @@ const treeviewReducer = (state = initialState, action) => {
     case "OPEN_VIEW":
       return {
         ...state,
-        isOpen: true,
-        isLoading: true,
+        isOpen: true, 
       };
     case "CLOSE_VIEW":
       return {
         ...state,
         isOpen: false,
-        isLoading: false,
       };
     default:
       return state;
